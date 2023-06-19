@@ -1,0 +1,180 @@
+@mixin gridcreator($numofcols:12,$screenname:'',$brekpoint:0px){
+    @if($screenname == ""){
+        @media all and (min-width:$brekpoint){
+            @for $i from 1 through $numofcols{
+                .col-#{$i}{
+                    width: 100/($numofcols/$i) *1%;
+                }
+            }
+        }
+    } @else{
+        @media all and (min-width:$brekpoint){
+            @for $i from 1 through $numofcols {
+                .col-#{$screenname}-#{$i}{
+                    width: 100/($numofcols / $i) *1%;
+                }
+            }
+        }
+    }
+}
+
+@include gridcreator(12, "",0px );
+@include gridcreator(12, "sm",576px );
+@include gridcreator(12, "md",768px );
+@include gridcreator(12, "lg",992px );
+@include gridcreator(12, "xl",1200px );
+@include gridcreator(12, "xxl",1600px );
+
+.row{
+    width: 100%;
+    display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background:#23242a ;
+
+}
+.box{
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: #c1c1c1;
+    border-radius: 8px;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+    &::before{
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50px;
+        width: 100%;
+        height: 500px;
+        background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff);
+        transform-origin: bottom right;
+        animation:animate 6s linear infinite;
+    }
+    &::after{
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50px;
+        width: 100%;
+        height: 500px;
+        background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff);
+        transform-origin: bottom right;
+        animation:animate 6s linear infinit;
+        animation-delay: -3s;
+    }
+}
+// .box::before{
+//     content: '';
+//     position: absolute;
+//     top: -50%;
+//     left: -50px;
+//     width: 100%;
+//     height: 500px;
+//     background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff);
+//     transform-origin: bottom right;
+//     animation:animate 6s linear infinite;
+// }
+// .box::after{
+//     content: '';
+//     position: absolute;
+//     top: -50%;
+//     left: -50px;
+//     width: 100%;
+//     height: 500px;
+//     background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff);
+//     transform-origin: bottom right;
+//     animation:animate 6s linear infinit;
+//     animation-delay: -3s;
+// }
+@keyframes animate{
+    0%{
+        transform: rotate(30deg);
+    }
+}
+.form{
+    position: absolute;
+    inset: 2px;
+    border-radius: 8px ;
+    background: #28292d;
+    z-index: 10;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+}
+.row{
+    position: relative;
+    // width: 1000px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    justify-content: center;
+}
+
+input{
+    height: 30px;
+    border-radius: 20px;
+    // margin: 5px;
+    margin-right: 50px;
+    padding: 20px;
+}
+.form h2{
+    color: #45f3ff;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+.inputbox{
+    position: relative;
+    width: 300px;
+    margin-top: 35px;
+}
+input::placeholder{
+    margin-left: 10px;
+}
+
+.btn{
+   background-color:  #45f3ff;
+   color: white;
+}
+// .inputbox input{
+//     position: relative;
+//     width: 100%;
+//     padding: 20px 10px 10px;
+//     background: transparent;
+
+// }
+// .row input{
+//     position: absolute;
+//     left: 0;
+//     bottom: 0;
+//     right: 0;
+//     top: 0;
+//     width: 100%;
+//   height:20px;
+//   background: #45f3ff;
+//   border-radius: 4px;
+//   transition: 0.5s;
+//   pointer-events: none;
+
+// }
